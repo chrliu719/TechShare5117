@@ -1,0 +1,33 @@
+.title{
+    text-align: center;
+    background-color: aqua;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.columns{
+    display: flex;
+    height: 100vh;
+}
+.col{
+    background-color: antiquewhite;
+}
+.dragImg{
+    height: 60px;
+    width: 60px;
+}
+.middle{
+    width: 100%;
+    background-color: white;
+}
+.outer{
+    width: 100%;
+}
+.imgstack{
+    display: flex;
+    flex-direction: column;
+}
+.imgcols{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+}
