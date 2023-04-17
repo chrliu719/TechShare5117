@@ -1,7 +1,7 @@
 import {React, useEffect, useState} from 'react'
 import interact from 'interactjs';
 
-export default function Dropzone({id, add, remove}) {
+export default function Dropzone({id, add, remove, images}) {
   useEffect(() => {
     interact('#dropzone' + id).dropzone({
         // only accept elements matching this CSS selector
@@ -48,6 +48,12 @@ export default function Dropzone({id, add, remove}) {
   }, []);
 
   return (
-    <div className={"col outer title"} id={"dropzone" + id}>Column {id}</div>
+    <div className={"col outer title"} id={"dropzone" + id}>
+      Column {id} <br></br>
+      {images.map((image, idx) => {
+                    const yOffset = idx * 145
+                    return (<img class="dragImg" src={image} style={{transform:"translate(0px," + yOffset + "px)"}} data-y={yOffset}/>)
+      })}
+    </div>
   )
 }

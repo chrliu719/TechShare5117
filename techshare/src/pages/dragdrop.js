@@ -6,12 +6,20 @@ export default function Home() {
     const [colSets, setColSets] = useState([])
     const [cols, setCols] = useState([]);
     const numCols = 3;
+    const images = ["https://a.espncdn.com/combiner/i?img=/i/headshots/nfl/players/full/4383351.png&w=350&h=254", "https://static.www.nfl.com/image/private/t_headshot_desktop/league/h9ndf9ralxifgjvot2q4", "https://b.fssta.com/uploads/application/nfl/headshots/13985.png",
+    "https://static.www.nfl.com/image/private/t_headshot_desktop/league/vs40h82nvqaqvyephwwu", "https://static.www.nfl.com/image/private/t_headshot_desktop/league/hdwbdlyiose4znenx5ed" ]
 
     useEffect(() => {
         let tempCols = []
         let tempSets = []
-        for(let i = 1; i <= numCols; i++){
+        for(let i = 0; i < numCols; i++){
             let items = new Set();
+
+            // Add images to the first column's set
+            if(i == 0){
+                images.map(image => items.add(image));
+            }
+
             const addItem = item =>{
                 items.add(item)
             }
@@ -19,8 +27,16 @@ export default function Home() {
             const removeItem = item =>{
                 items.delete(item)
             }
+            
             tempSets.push(items);
-            tempCols.push((<Dropzone id={i} add={addItem} remove={removeItem}/>));    
+
+            // Add images to first  column
+            if(i == 0){
+                tempCols.push((<Dropzone id={i} add={addItem} remove={removeItem} images={images}/>));    
+            } 
+            else {
+                tempCols.push((<Dropzone id={i} add={addItem} remove={removeItem} images={[]}/>));
+            }
         }
         
         setCols(tempCols);
@@ -136,21 +152,16 @@ export default function Home() {
             }
         });
     }, []);
-//style={{transform:"translate(0px," + id * 110 + "px)"}}
-    const images = ["https://a.espncdn.com/combiner/i?img=/i/headshots/nfl/players/full/4383351.png&w=350&h=254", "https://static.www.nfl.com/image/private/t_headshot_desktop/league/h9ndf9ralxifgjvot2q4", "https://b.fssta.com/uploads/application/nfl/headshots/13985.png",
-    "https://static.www.nfl.com/image/private/t_headshot_desktop/league/vs40h82nvqaqvyephwwu", "https://static.www.nfl.com/image/private/t_headshot_desktop/league/hdwbdlyiose4znenx5ed" ]
+    
     return<>
         <div className="title">
         <h1>Move the Images</h1>
         </div>
         <div className="columns">
-            <div className="col outer title lower-dropzone">
-                Column 0 
-                <br></br>
-                {images.map((image, idx) =>
-                    (<img class="dragImg" src={image} style={{transform:"translate(0px," + idx * 145 + "px)"}}/>))}
-            </div>
             {cols.map(col => col)}
         </div>
+        {/* <button onClick={() => {
+            colSets.forEach(element => console.log(element));
+        }}>meme</button> */}
     </>
 }
