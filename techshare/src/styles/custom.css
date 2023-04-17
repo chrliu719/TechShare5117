@@ -1,0 +1,45 @@
+.title{
+    text-align: center;
+    background-color: aqua;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.columns{
+    display: flex;
+    height: 100vh;
+}
+.col{
+    background-color: antiquewhite;
+}
+.dragImg{
+    height: 140px;
+    width: 140px;
+    position:absolute;
+    border: 1px solid black;
+}
+.middle{
+    width: 100%;
+    background-color: white;
+}
+.outer{
+    width: 100%;
+}
+.imgstack{
+    display: flex;
+    flex-direction: column;
+}
+.imgcols{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.drop-active {
+    border-color: #aaa;
+}
+  
+.drop-target {
+    background-color: #29e;
+    border-color: #fff;
+    border-style: solid;
+}
