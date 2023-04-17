@@ -10,11 +10,12 @@ export default function Dropzone({id, add, remove}) {
         overlap: 0.75,
         // listen for drop related events:
         
+        // Called when a droppable element is dragged
         ondropactivate: function (event) {
             // add active dropzone feedback
             event.target.classList.add('drop-active')
-            console.log("?")
         },
+        // Called when a droppable element enters the drop zone
         ondragenter: function (event) {
             var draggableElement = event.relatedTarget
             var dropzoneElement = event.target
@@ -24,6 +25,7 @@ export default function Dropzone({id, add, remove}) {
             draggableElement.classList.add('can-drop')
             draggableElement.textContent = 'Dragged in'
         },
+        // Called when a droppable element leaves the drop zone
         ondragleave: function (event) {
             // remove the drop feedback style
             event.target.classList.remove('drop-target')
@@ -31,10 +33,12 @@ export default function Dropzone({id, add, remove}) {
             event.relatedTarget.textContent = 'Dragged out'
             remove(event.relatedTarget.getAttribute('src'))
         },
+        // Called when a droppable element is dropped in the zone
         ondrop: function (event) {
             event.relatedTarget.textContent = 'Dropped'
             add(event.relatedTarget.getAttribute('src'))
         },
+        // Called when a droppable element is let go of
         ondropdeactivate: function (event) {
             // remove active dropzone feedback
             event.target.classList.remove('drop-active')

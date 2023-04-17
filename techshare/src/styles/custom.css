@@ -12,8 +12,10 @@
     background-color: antiquewhite;
 }
 .dragImg{
-    height: 60px;
-    width: 60px;
+    height: 140px;
+    width: 140px;
+    position:absolute;
+    border: 1px solid black;
 }
 .middle{
     width: 100%;
