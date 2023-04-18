@@ -23,14 +23,12 @@ export default function Dropzone({id, add, remove, images}) {
             // feedback the possibility of a drop
             dropzoneElement.classList.add('drop-target')
             draggableElement.classList.add('can-drop')
-            draggableElement.textContent = 'Dragged in'
         },
         // Called when a droppable element leaves the drop zone
         ondragleave: function (event) {
             // remove the drop feedback style
             event.target.classList.remove('drop-target')
             event.relatedTarget.classList.remove('can-drop')
-            event.relatedTarget.textContent = 'Dragged out'
             remove(event.relatedTarget.getAttribute('src'))
         },
         // Called when a droppable element is dropped in the zone
