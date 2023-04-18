@@ -147,6 +147,6 @@ export default function Home() {
         <div className="columns">
             {cols.map(col => col)}
         </div>
-        <button onClick={handleClick}>meme</button>
+        <button onClick={handleClick}>Save</button>
     </>
 }
