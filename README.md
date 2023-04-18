@@ -10,7 +10,7 @@ interact('.dragImg')
             ...
         })
 ```
-inside .draggable here we can specify properties and restrictions of our draggable elements
+inside .draggable here we can specify properties and restrictions of our draggable elements\n
 We wouldn’t want our images to get dragged off the screen and lost, and we’d like them to stay within the category columns 
 So, we add the restrictRect modifier and restrict the elements to stay within elements with the class columns
 
