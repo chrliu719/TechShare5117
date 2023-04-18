@@ -9,8 +9,16 @@
     height: 100vh;
 }
 .UploadImg {
-	padding-top: 15px;
+	padding: 15px;
 	text-align: center;
+	display: flex;
+	flex-direction: column;
+}
+
+.formItem {
+	margin-top: 15px;
+	width: 10%;
+	align-self: center;
 }
 
 .col{

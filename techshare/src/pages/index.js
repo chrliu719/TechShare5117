@@ -28,10 +28,12 @@ export default function Home() {
         <h1>Move the Images</h1>
 	</div>
 	<div className='UploadImg'>
-		<input type="file" id="images" name="images" accept='image/*' multiple/>
-		<label for="numCol">Number of columns: </label>
-		<input type="text" id="numCol" name="numCol" defaultValue={0}/>
-		<button type='button' onClick={handleClick} text>Create Tiered Page!</button>
+		<input className='formItem' type="file" id="images" name="images" accept='image/*' multiple/>
+		<div className='formItem'>
+			<label for="numCol">Number of columns: </label>
+			<input  type="text" id="numCol" name="numCol" defaultValue={0}/>
+		</div>
+		<button className='formItem' type='button' onClick={handleClick} text>Create Tiered Page!</button>
 	</div>
 
   </>)
