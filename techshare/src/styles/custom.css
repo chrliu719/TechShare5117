@@ -30,6 +30,17 @@
     position:absolute;
     border: 1px solid black;
 }
+
+.saveImg{
+	height: 140px;
+    width: 140px;
+}
+
+.saveDiv {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
 .middle{
     width: 100%;
     background-color: white;
