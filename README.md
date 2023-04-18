@@ -7,6 +7,12 @@ Then to make it draggable we call .draggable, and here we can specify properties
 ```
 interact('.dragImg')
         .draggable({
+            ...
+        })
+```
+```
+interact('.dragImg')
+        .draggable({
             modifiers: [
                 // restrict elements to only stay within elements with the class columns
                 // endOnly means this restriction is enacted when the event (ie. dragging) is done
