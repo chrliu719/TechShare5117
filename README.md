@@ -11,8 +11,7 @@ interact('.dragImg')
         })
 ```
 inside .draggable here we can specify properties and restrictions of our draggable elements\
-We wouldn’t want our images to get dragged off the screen and lost, and we’d like them to stay within the category columns 
-So, we add modifiers(restrictions on different actions such as dragging or resizing) the restrictRect modifier and restrict the elements to stay within elements with the class columns\
+We wouldn’t want our images to get dragged off the screen and lost, and we’d like them to stay within the category columns. So, we add modifiers(restrictions on different actions such as dragging or resizing) the restrictRect modifier and restrict the elements to stay within elements with the class columns\
 The aditional attribute endOnly means that this restriction is only applied at the end of the action, which in this case is whenever we let go of the element we’re dragging\
 Another aspect to point out is to prevent the object from scrolling the page around when we go to the boudaries, we set autoScroll to false
 
