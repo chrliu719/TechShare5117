@@ -41,25 +41,7 @@ export default function Home() {
         
         setCols(tempCols);
         setColSets(tempSets);
-        
-        function dragMoveListener (event) {
-            // target is the element being interacted with
-            var target = event.target
-            // Get the current data-x and data-y
-            // First time interacting with an object these won't exist so we start with 0
-            // Add the change in x and y that this dragging event caused
-            var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
-            var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
-
-            // translate the element
-            target.style.transform = 'translate(' + x + 'px, ' + y + 'px)'
-        
-            // set data-x and data-y for future use
-            target.setAttribute('data-x', x)
-            target.setAttribute('data-y', y)
-        }
-        
-        window.dragMoveListener = dragMoveListener
+        // window.dragMoveListener = dragMoveListener
 
         interact('.dragImg')
         .draggable({
@@ -73,7 +55,22 @@ export default function Home() {
             ],
             autoScroll: false,
             // listner that is called when the element is dragged
-            listeners: { move: dragMoveListener }
+            listeners: { move: function dragMoveListener (event) {
+                // target is the element being interacted with
+                var target = event.target
+                // Get the current data-x and data-y
+                // First time interacting with an object these won't exist so we start with 0
+                // Add the change in x and y that this dragging event caused
+                var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
+                var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
+    
+                // translate the element
+                target.style.transform = 'translate(' + x + 'px, ' + y + 'px)'
+            
+                // set data-x and data-y for future use
+                target.setAttribute('data-x', x)
+                target.setAttribute('data-y', y)
+            } }
         })
         .resizable({
             // resize from all edges and corners
@@ -123,8 +120,8 @@ export default function Home() {
         <div className="columns">
             {cols.map(col => col)}
         </div>
-        {/* <button onClick={() => {
+        <button onClick={() => {
             colSets.forEach(element => console.log(element));
-        }}>meme</button> */}
+        }}>meme</button>
     </>
 }

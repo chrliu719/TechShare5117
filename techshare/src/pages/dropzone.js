@@ -2,6 +2,8 @@ import {React, useEffect, useState} from 'react'
 import interact from 'interactjs';
 
 export default function Dropzone({id, add, remove, images}) {
+  const [title, setTitle] = useState("Column " + id)
+
   useEffect(() => {
     interact('#dropzone' + id).dropzone({
         // only accept elements matching this CSS selector
@@ -47,7 +49,7 @@ export default function Dropzone({id, add, remove, images}) {
 
   return (
     <div className={"col outer title"} id={"dropzone" + id}>
-      Column {id} <br></br>
+      <input className={"col_input"} type="text" value={title} placeholder={"Column " + id} onChange={(e) => setTitle(e.target.value)}/><br></br><br></br>
       {images.map((image, idx) => {
                     const yOffset = idx * 145
                     return (<img class="dragImg" src={image} style={{transform:"translate(0px," + yOffset + "px)"}} data-y={yOffset}/>)

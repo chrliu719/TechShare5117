@@ -43,3 +43,10 @@
     border-color: #fff;
     border-style: solid;
 }
+
+.col_input {
+    border: 0px;
+    font-size: 2.4vh;
+    text-align: center;
+    padding:0.3em;
+}
