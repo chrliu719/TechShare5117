@@ -1,15 +1,22 @@
 import {React, useEffect, useState} from 'react'
-import Dropzone from './dropzone'
+import Dropzone from '@/components/dropzone';
 import interact from 'interactjs';
+import { useRouter } from 'next/router'
+
 
 export default function Home() {
+	const router = useRouter()
     const [colSets, setColSets] = useState([])
     const [cols, setCols] = useState([]);
-    const numCols = 3;
-    const images = ["https://a.espncdn.com/combiner/i?img=/i/headshots/nfl/players/full/4383351.png&w=350&h=254", "https://static.www.nfl.com/image/private/t_headshot_desktop/league/h9ndf9ralxifgjvot2q4", "https://b.fssta.com/uploads/application/nfl/headshots/13985.png",
-    "https://static.www.nfl.com/image/private/t_headshot_desktop/league/vs40h82nvqaqvyephwwu", "https://static.www.nfl.com/image/private/t_headshot_desktop/league/hdwbdlyiose4znenx5ed" ]
+    
+    // const images = ["https://a.espncdn.com/combiner/i?img=/i/headshots/nfl/players/full/4383351.png&w=350&h=254", "https://static.www.nfl.com/image/private/t_headshot_desktop/league/h9ndf9ralxifgjvot2q4", "https://b.fssta.com/uploads/application/nfl/headshots/13985.png",
+    // "https://static.www.nfl.com/image/private/t_headshot_desktop/league/vs40h82nvqaqvyephwwu", "https://static.www.nfl.com/image/private/t_headshot_desktop/league/hdwbdlyiose4znenx5ed" ]
 
     useEffect(() => {
+		const query = router.query
+		console.log("Query params", router.query)
+		const numCols = query["num"];
+		const images = query["imgs"]
         let tempCols = []
         let tempSets = []
         for(let i = 0; i < numCols; i++){
