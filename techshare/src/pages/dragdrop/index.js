@@ -8,6 +8,23 @@ export default function Home() {
 	const router = useRouter()
     const [colSets, setColSets] = useState([])
     const [cols, setCols] = useState([]);
+
+	function handleClick () {
+		const query = {}
+		const colNameElements = document.getElementsByClassName("col_input")
+		const colNames = []
+
+		for (var i = 0; i < colSets.length; i++){
+			colNames.push(colNameElements[i].value)
+			query[colNameElements[i].value] = Array.from(colSets[i])
+		}
+		query['colNames'] = colNames
+		console.log(query)
+		router.push({
+			pathname: "/save",
+			query: query
+		})
+	}
     
     // const images = ["https://a.espncdn.com/combiner/i?img=/i/headshots/nfl/players/full/4383351.png&w=350&h=254", "https://static.www.nfl.com/image/private/t_headshot_desktop/league/h9ndf9ralxifgjvot2q4", "https://b.fssta.com/uploads/application/nfl/headshots/13985.png",
     // "https://static.www.nfl.com/image/private/t_headshot_desktop/league/vs40h82nvqaqvyephwwu", "https://static.www.nfl.com/image/private/t_headshot_desktop/league/hdwbdlyiose4znenx5ed" ]
@@ -130,8 +147,6 @@ export default function Home() {
         <div className="columns">
             {cols.map(col => col)}
         </div>
-        <button onClick={() => {
-            colSets.forEach(element => console.log(element));
-        }}>meme</button>
+        <button onClick={handleClick}>meme</button>
     </>
 }
