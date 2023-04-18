@@ -4,7 +4,7 @@ Link to [Demo](https://youtube.com/).
 When we call interact, we can pass in a CSS selector for the class, and since we made all the images in this dragImg we pass in the dragImg class
 Then to make it draggable we call .draggable
 
-```
+```javascript
 interact('.dragImg')
         .draggable({
             ...
@@ -15,7 +15,7 @@ We wouldn’t want our images to get dragged off the screen and lost, and we’d
 So, we add modifiers(restrictions on different actions such as dragging or resizing) the restrictRect modifier and restrict the elements to stay within elements with the class columns\
 The aditional attribute endOnly means that this restriction is only applied at the end of the action, which in this case is whenever we let go of the element we’re dragging
 
-```
+```javascript
 interact('.dragImg')
         .draggable({
             modifiers: [
@@ -31,7 +31,7 @@ interact('.dragImg')
 ```
 
 
-```
+```javascript
 interact('.dragImg')
         .draggable({
             modifiers: [
