@@ -8,6 +8,11 @@
     display: flex;
     height: 100vh;
 }
+.UploadImg {
+	padding-top: 15px;
+	text-align: center;
+}
+
 .col{
     background-color: antiquewhite;
 }
