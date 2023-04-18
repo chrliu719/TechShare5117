@@ -52,6 +52,10 @@ function dragMoveListener (event) {
             target.setAttribute('data-y', y)
         }
 ```
+Walking through this function, the target is the element being interacted with.\
+To find where we need to move the object, we take the previous x-y position if there is one, and add it to the change in x and y recorded by the event.\
+We use this new x and y position to update the transform of the element and then save this x and y for future events.\
+
 ## Resizing
 ## Adding Drop Zones
 
