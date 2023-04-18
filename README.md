@@ -59,7 +59,8 @@ We use this new x and y position to update the transform of the element and then
 So, now we can drag our images around, but this one looks a little thin, it’d be nice if we could resize it.
 ## Resizing
 We can make our draggable images resizable as well by adding the resizable action\
-The edges attribute allows us to select which corners and edges we can resize from and we just enable all resizing options
+The edges attribute allows us to select which corners and edges we can resize from and we just enable all resizing options\
+We also add another modifier 
 ```javascript
 interact('.dragImg')
         .draggable({
@@ -105,5 +106,7 @@ interact('.dragImg')
             
           })
 ```
+
+comment and uncomment 95 and 96 and show why this is needed?
 ## Adding Drop Zones
 
