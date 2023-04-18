@@ -49,7 +49,6 @@ export default function Home() {
             
             setCols(tempCols);
             setColSets(tempSets);
-            // window.dragMoveListener = dragMoveListener
 
             interact('.dragImg')
             .draggable({
@@ -61,9 +60,10 @@ export default function Home() {
                         endOnly: true
                     })
                 ],
-                autoScroll: false,
-                // listner that is called when the element is dragged
-                listeners: { move: function dragMoveListener (event) {
+                autoScroll: true,
+                // listener that is called when the element is dragged
+                listeners: {
+                     move: function dragMoveListener (event) {
                     // target is the element being interacted with
                     var target = event.target
                     // Get the current data-x and data-y
@@ -78,45 +78,46 @@ export default function Home() {
                     // set data-x and data-y for future use
                     target.setAttribute('data-x', x)
                     target.setAttribute('data-y', y)
-                } }
+                } 
+            }
             })
             .resizable({
                 // resize from all edges and corners
                 edges: { left: true, right: true, bottom: true, top: true },
             
                 listeners: {
-                move (event) {
-                    // target is the element being interacted with
-                    var target = event.target
-                    // Get the current data-x and data-y
-                    // First time interacting with an object these won't exist so we start with 0
-                    var x = (parseFloat(target.getAttribute('data-x')) || 0)
-                    var y = (parseFloat(target.getAttribute('data-y')) || 0)
-            
-                    // update the width and height of the element
-                    // event.rect is an object with information about the new dimensions
-                    target.style.width = event.rect.width + 'px'
-                    target.style.height = event.rect.height + 'px'
-            
-                    // translate when resizing from top or left edges
-                    // if resizing from the top or left, we need to change where the top left corner of the element is
-                    // as well as resize it
-                    x += event.deltaRect.left
-                    y += event.deltaRect.top
-            
-                    // set the transform with the calculated values
-                    target.style.transform = 'translate(' + x + 'px,' + y + 'px)'
-            
-                    // set data-x and data-y for future use
-                    target.setAttribute('data-x', x)
-                    target.setAttribute('data-y', y)
-                }
+                    move (event) {
+                        // target is the element being interacted with
+                        var target = event.target
+                        // Get the current data-x and data-y
+                        // First time interacting with an object these won't exist so we start with 0
+                        var x = (parseFloat(target.getAttribute('data-x')) || 0)
+                        var y = (parseFloat(target.getAttribute('data-y')) || 0)
+                
+                        // update the width and height of the element
+                        // event.rect is an object with information about the new dimensions
+                        target.style.width = event.rect.width + 'px'
+                        target.style.height = event.rect.height + 'px'
+                
+                        // translate when resizing from top or left edges
+                        // if resizing from the top or left, we need to change where the top left corner of the element is
+                        // as well as resize it
+                        x += event.deltaRect.left
+                        y += event.deltaRect.top
+                
+                        // set the transform with the calculated values
+                        target.style.transform = 'translate(' + x + 'px,' + y + 'px)'
+                
+                        // set data-x and data-y for future use
+                        target.setAttribute('data-x', x)
+                        target.setAttribute('data-y', y)
+                    }
                 },
                 modifiers: [      
-                // minimum size
-                interact.modifiers.restrictSize({
-                    min: { width: 70, height: 70 }
-                })
+                    // minimum size
+                    interact.modifiers.restrictSize({
+                        min: { width: 70, height: 70 }
+                    })
                 ],
             })
         }
