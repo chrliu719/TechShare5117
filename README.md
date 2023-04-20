@@ -79,8 +79,10 @@ interact('.dragImg')
             
           })
 ```
-Now we add an event handler for when an object is resized which follows a similar format to the one for dragging./
-We get the element being resized and store it in target and then retrieve its x and y position.
+Now we add an event handler for when an object is resized which follows a similar format to the one for dragging.\
+We get the element being resized and store it in target and then retrieve its x and y position.\
+We use the event object which has attributes, one of which tells us what the new width and height of our resized element should be which we set to our target element's width and height.\
+Then just like for dragging an object, we change its translate to the new x and y as well as record that x and y for future use\
 
 ```javascript
 interact('.dragImg')
@@ -110,8 +112,8 @@ interact('.dragImg')
                 // translate when resizing from top or left edges
                 // if resizing from the top or left, we need to change where the top left corner of the element is
                 // as well as resize it
-                x += event.deltaRect.left
-                y += event.deltaRect.top
+                //x += event.deltaRect.left
+                //y += event.deltaRect.top
         
                 // set the transform with the calculated values
                 target.style.transform = 'translate(' + x + 'px,' + y + 'px)'
@@ -124,7 +126,9 @@ interact('.dragImg')
             
           })
 ```
-
+Now we have to fix one issue. If we try and resize from the top or left edges because currently the the elements are resizing in place.\
+To fix this we uncomment the lines x += event.deltaRect.left and y += event.deltaRect.top.\ 
+Now we are adjusting the x and y positions of an element(using information from the event) taking into account if the top or left edges are adjusted. 
 ```javascript
 interact('.dragImg')
         .draggable({
@@ -170,7 +174,6 @@ interact('.dragImg')
             
           })
 ```
-
-comment and uncomment 95 and 96 and show why this is needed?
+Now we are going to create zones where we can drag our images to to record which column they are in.
 ## Adding Drop Zones
 
