@@ -60,7 +60,71 @@ So, now we can drag our images around, but this one looks a little thin, it’d 
 ## Resizing
 We can make our draggable images resizable as well by adding the resizable action\
 The edges attribute allows us to select which corners and edges we can resize from and we just enable all resizing options\
-We also add another modifier 
+We also add another modifier to restrict the size of our images when resizing. In this case we add a minimum height and width.
+```javascript
+interact('.dragImg')
+        .draggable({
+            ...
+        })
+        .resizable({
+            // resize from all edges and corners
+            edges: { left: true, right: true, bottom: true, top: true },
+            modifiers: [      
+                // minimum size
+                interact.modifiers.restrictSize({
+                  min: { width: 70, height: 70 }
+                })
+            ],
+            ...
+            
+          })
+```
+Now we add an event handler for when an object is resized which follows a similar format to the one for dragging./
+We get the element being resized and store it in target and then retrieve its x and y position.
+
+```javascript
+interact('.dragImg')
+        .draggable({
+            ...
+        })
+        .resizable({
+            // resize from all edges and corners
+            edges: ... ,
+            modifiers: [      
+                ...
+            ],
+            listeners: {
+              move (event) {
+                // target is the element being interacted with
+                var target = event.target
+                // Get the current data-x and data-y
+                // First time interacting with an object these won't exist so we start with 0
+                var x = (parseFloat(target.getAttribute('data-x')) || 0)
+                var y = (parseFloat(target.getAttribute('data-y')) || 0)
+        
+                // update the width and height of the element
+                // event.rect is an object with information about the new dimensions
+                target.style.width = event.rect.width + 'px'
+                target.style.height = event.rect.height + 'px'
+        
+                // translate when resizing from top or left edges
+                // if resizing from the top or left, we need to change where the top left corner of the element is
+                // as well as resize it
+                x += event.deltaRect.left
+                y += event.deltaRect.top
+        
+                // set the transform with the calculated values
+                target.style.transform = 'translate(' + x + 'px,' + y + 'px)'
+        
+                // set data-x and data-y for future use
+                target.setAttribute('data-x', x)
+                target.setAttribute('data-y', y)
+              }
+            },
+            
+          })
+```
+
 ```javascript
 interact('.dragImg')
         .draggable({
