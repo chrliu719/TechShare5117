@@ -10,6 +10,10 @@ interact('.dragImg')
             ...
         })
 ```
+Now we need to actually make our objects move.\
+The part of interact thats both a blessing and a curse is that you have to define your own event handlers to move the object.\
+In this case, we need to write a function to handle the move event when the object is dragged, and we do this with the function dragMoveListener.\
+The event object passed into this function gives us information about the elements involved in the event.
 
 ## Drag and Drop
 First we must place all of our interactjs codeinside the UseEffect hook.\n
