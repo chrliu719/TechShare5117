@@ -25,9 +25,6 @@ export default function Home() {
 			query: query
 		})
 	}
-    
-    // const images = ["https://a.espncdn.com/combiner/i?img=/i/headshots/nfl/players/full/4383351.png&w=350&h=254", "https://static.www.nfl.com/image/private/t_headshot_desktop/league/h9ndf9ralxifgjvot2q4", "https://b.fssta.com/uploads/application/nfl/headshots/13985.png",
-    // "https://static.www.nfl.com/image/private/t_headshot_desktop/league/vs40h82nvqaqvyephwwu", "https://static.www.nfl.com/image/private/t_headshot_desktop/league/hdwbdlyiose4znenx5ed" ]
 
     useEffect(() => {
         if(router.isReady){
@@ -80,22 +77,22 @@ export default function Home() {
                 autoScroll: true,
                 // listener that is called when the element is dragged
                 listeners: {
-                     move: function dragMoveListener (event) {
-                    // target is the element being interacted with
-                    var target = event.target
-                    // Get the current data-x and data-y
-                    // First time interacting with an object these won't exist so we start with 0
-                    // Add the change in x and y that this dragging event caused
-                    var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
-                    var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
-        
-                    // translate the element
-                    target.style.transform = 'translate(' + x + 'px, ' + y + 'px)'
-                
-                    // set data-x and data-y for future use
-                    target.setAttribute('data-x', x)
-                    target.setAttribute('data-y', y)
-                } 
+                    move: function dragMoveListener (event) {
+                        // target is the element being interacted with
+                        var target = event.target
+                        // Get the current data-x and data-y
+                        // First time interacting with an object these won't exist so we start with 0
+                        // Add the change in x and y that this dragging event caused
+                        var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
+                        var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
+            
+                        // translate the element
+                        target.style.transform = 'translate(' + x + 'px, ' + y + 'px)'
+                    
+                        // set data-x and data-y for future use
+                        target.setAttribute('data-x', x)
+                        target.setAttribute('data-y', y)
+                    } 
             }
             })
             .resizable({
