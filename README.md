@@ -1,6 +1,6 @@
 # TechShare5117
 Link to [Demo](https://youtube.com/).
-## General Flow
+## Selecting Interactables and Interactions
 First we must place all of our interactjs codeinside the UseEffect hook.\
 Then we select all the objects that we want to make interactable so we select pass in the CSS class selector ".dragImg" (show html??) and then add the interaction we want.<br /> 
 In this case we want to make our elements draggable<br />
@@ -10,10 +10,40 @@ interact('.dragImg')
             ...
         })
 ```
-Now we need to actually make our objects move.\
+Let's say we want our images to be resizeable we would instead do <br />
+```javascript
+interact('.dragImg')
+        .resizable({
+            ...
+        })
+```
+For our demo we would like to have both so we do
+```javascript
+interact('.dragImg')
+        .draggable({
+            ...
+        })
+        .resizable({
+            ...
+        })
+```
+## Listeners
+Now we need to actually make our objects move when dragged.\
 The part of interact thats both a blessing and a curse is that you have to define your own event handlers to move the object.\
 In this case, we need to write a function to handle the move event when the object is dragged, and we do this with the function dragMoveListener.\
-The event object passed into this function gives us information about the elements involved in the event.
+The event object passed into this function gives us information about the elements involved in the drag event.<br />
+```javascript
+interact('.dragImg')
+        .draggable({
+            ...
+            listeners: { move: dragMoveListener }
+        })
+        function dragMoveListener (event) {
+           ...
+        }
+```
+
+
 
 ## Drag and Drop
 First we must place all of our interactjs codeinside the UseEffect hook.\n
