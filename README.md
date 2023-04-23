@@ -38,11 +38,37 @@ interact('.dragImg')
             ...
             listeners: { move: dragMoveListener }
         })
+        .resizable({
+            ...
+        })
         function dragMoveListener (event) {
            ...
         }
 ```
+```javascript
+function dragMoveListener (event) {
+            // target is the element being interacted with
+            var target = event.target
+            // Get the current data-x and data-y
+            // First time interacting with an object these won't exist so we start with 0
+            // Add the change in x and y that this dragging event caused
+            var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
+            var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
 
+            // translate the element
+            target.style.transform = 'translate(' + x + 'px, ' + y + 'px)'
+        
+            // set data-x and data-y for future use
+            target.setAttribute('data-x', x)
+            target.setAttribute('data-y', y)
+        }
+```
+Walking through this function, the target is the element being interacted with.\
+To find where we need to move the object, we take the previous x-y position if there is one, and add it to the change in x and y recorded by the event.\
+We use this new x and y position to update the transform of the element and then save this x and y for future events.
+
+So, now we can drag our images around, but this one looks a little thin, it’d be nice if we could resize it. <br />
+To do this we need to create our resizeable interaction listener.
 
 
 ## Drag and Drop
