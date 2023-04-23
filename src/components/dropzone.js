@@ -7,7 +7,6 @@ export default function Dropzone({id, add, remove, images}) {
     interact('#dropzone' + id)
       .dropzone({
         //// Require a 75% element overlap for a drop to be possible
-
         //overlap: 0.75,
 
         // Event Handlers
