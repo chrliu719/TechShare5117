@@ -293,3 +293,46 @@ interact('.dragImg')
 Now we are going to create zones where we can drag our images to to record which column they are in.
 ## Adding Drop Zones
 
+We create the dropzone component to represent our columns, with each dropzone having the CSS class of "dropzone{id}" where id is just the index of the column. Each dropzone component has a set corresponding to the images currently dropped in the column, and also has props add and remove that perform those actions to the column's set. In the useEffect, we begin by calling interact with our CSS specicier of ".dropzone{id}" to make the specific column interactable with the dropzone action.
+
+```
+interact('#dropzone' + id)
+      .dropzone({
+        ...
+})
+```
+
+This interactable element only needs listeners, and we have 3 to handle different actions associated with dragging and dropping images. First we look at the ```ondragenter`` event that occurs when a draggable image is dragged over the column. In this event, the column the image is dragged over will gain the CSS class ```drop-target```, which just changes the background color of the column to indicate the image is currently dragged over that column.
+
+```
+ondragenter: function (event) {
+    var dropzoneElement = event.target
+    // highlight the object can be dropped in this column
+    dropzoneElement.classList.add('drop-target')
+}
+```
+
+Next, we have ondragleave, which occurs when an image is dragged out of a column. When the element is dragged out, the ```drop-target``` class is removed to unhighlight the column and the image is also removed from the column's set of images if it is there.
+
+```
+ondragleave: function (event) {
+    // unhighlight the column
+    event.target.classList.remove('drop-target')
+
+    // remove the dragged element from the column's set of images if in the set
+    remove(event.relatedTarget.getAttribute('src'))
+}
+```
+
+Lastly, we have the event ondrop, which occurs when the image is dropped in the column. Here our listener unhighlights the column and then adds the dropped image into the set.
+
+```
+ondrop: function (event) {
+    // unhighlight the column
+    event.target.classList.remove('drop-target')
+
+    // add the dropped element to the column's set of images
+    add(event.relatedTarget.getAttribute('src'))
+}
+```
+
