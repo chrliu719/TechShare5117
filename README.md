@@ -113,7 +113,10 @@ interact('.dragImg')
         })
         
 ```
-
+Now we add an event handler for when an object is resized which follows a similar format to the one for dragging.\
+We get the element being resized and store it in target and then retrieve its x and y position.\
+We use the event object which has attributes, one of which tells us what the new width and height of our resized element should be which we set to our target element's width and height.\
+Then just like for dragging an object, we change its translate to the new x and y as well as record that x and y for future use\
 
 ## Drag and Drop
 First we must place all of our interactjs codeinside the UseEffect hook.\n
