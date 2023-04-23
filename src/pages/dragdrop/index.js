@@ -113,8 +113,8 @@ export default function Home() {
             //     //         // // translate when resizing from top or left edges
             //     //         // // if resizing from the top or left, we need to change where the top left corner of the element is
             //     //         // // as well as resize it
-            //     //         x += event.deltaRect.left
-            //     //         y += event.deltaRect.top
+            //     //        // x += event.deltaRect.left
+            //     //        // y += event.deltaRect.top
                 
             //     //         // set the transform with the calculated values
             //     //         target.style.transform = 'translate(' + x + 'px,' + y + 'px)'
