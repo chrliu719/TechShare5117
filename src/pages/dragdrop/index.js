@@ -100,7 +100,7 @@ export default function Home() {
                 edges: { left: true, right: true, bottom: true, top: true },
             
                 listeners: {
-                    move (event) {
+                    move: function (event) {
                         // target is the element being interacted with
                         var target = event.target
                         // Get the current data-x and data-y
