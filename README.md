@@ -30,13 +30,32 @@ interact('.dragImg')
 ## Listeners
 Now we need to actually make our objects move when dragged.\
 The part of interact thats both a blessing and a curse is that you have to define your own event handlers to move the object.\
-In this case, we need to write a function to handle the move event when the object is dragged, and we do this with the function dragMoveListener.\
+### Draggable Listener
+There are different listeners available such as onEnd.
+However, In this case, we need to write a function to handle the move event when the object is being moved, and we do this with the function dragMoveListener.\
 The event object passed into this function gives us information about the elements involved in the drag event.<br />
 ```javascript
 interact('.dragImg')
         .draggable({
             ...
-            listeners: { move: dragMoveListener }
+            listeners: {
+                move: function dragMoveListener (event) {
+                                // target is the element being interacted with
+                                var target = event.target
+                                // Get the current data-x and data-y
+                                // First time interacting with an object these won't exist so we start with 0
+                                // Add the change in x and y that this dragging event caused
+                                var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
+                                var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
+
+                                // translate the element
+                                target.style.transform = 'translate(' + x + 'px, ' + y + 'px)'
+
+                                // set data-x and data-y for future use
+                                target.setAttribute('data-x', x)
+                                target.setAttribute('data-y', y)
+                            } 
+            }
         })
         .resizable({
             ...
@@ -45,30 +64,55 @@ interact('.dragImg')
            ...
         }
 ```
-```javascript
-function dragMoveListener (event) {
-            // target is the element being interacted with
-            var target = event.target
-            // Get the current data-x and data-y
-            // First time interacting with an object these won't exist so we start with 0
-            // Add the change in x and y that this dragging event caused
-            var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
-            var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
 
-            // translate the element
-            target.style.transform = 'translate(' + x + 'px, ' + y + 'px)'
-        
-            // set data-x and data-y for future use
-            target.setAttribute('data-x', x)
-            target.setAttribute('data-y', y)
-        }
-```
 Walking through this function, the target is the element being interacted with.\
 To find where we need to move the object, we take the previous x-y position if there is one, and add it to the change in x and y recorded by the event.\
 We use this new x and y position to update the transform of the element and then save this x and y for future events.
 
 So, now we can drag our images around, but this one looks a little thin, it’d be nice if we could resize it. <br />
 To do this we need to create our resizeable interaction listener.
+### Resizeable listener
+```javascript
+interact('.dragImg')
+        .draggable({
+            ...
+            listeners: {
+                    ...
+            }
+        })
+        .resizable({
+            ...
+            listeners: {
+                move: function (event) {
+                        // target is the element being interacted with
+                        var target = event.target
+                        // Get the current data-x and data-y
+                        // First time interacting with an object these won't exist so we start with 0
+                        var x = (parseFloat(target.getAttribute('data-x')) || 0)
+                        var y = (parseFloat(target.getAttribute('data-y')) || 0)
+                
+                        // update the width and height of the element
+                        // event.rect is an object with information about the new dimensions
+                        target.style.width = event.rect.width + 'px'
+                        target.style.height = event.rect.height + 'px'
+                
+                        // translate when resizing from top or left edges
+                        // if resizing from the top or left, we need to change where the top left corner of the element is
+                        // as well as resize it
+                        x += event.deltaRect.left
+                        y += event.deltaRect.top
+                
+                        // set the transform with the calculated values
+                        target.style.transform = 'translate(' + x + 'px,' + y + 'px)'
+                
+                        // set data-x and data-y for future use
+                        target.setAttribute('data-x', x)
+                        target.setAttribute('data-y', y)
+                    }
+            }
+        })
+        
+```
 
 
 ## Drag and Drop
