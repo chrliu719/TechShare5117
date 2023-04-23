@@ -6,11 +6,7 @@ export default function Dropzone({id, add, remove, images}) {
   useEffect(() => {
     interact('#dropzone' + id)
       .dropzone({
-        //// Require a 75% element overlap for a drop to be possible
-        //overlap: 0.75,
-
         // Event Handlers
-
 
         // Called when a droppable element enters the drop zone
         ondragenter: function (event) {
