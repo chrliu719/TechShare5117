@@ -60,9 +60,6 @@ interact('.dragImg')
         .resizable({
             ...
         })
-        function dragMoveListener (event) {
-           ...
-        }
 ```
 
 Walking through this function, the target is the element being interacted with.\
