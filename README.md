@@ -1,8 +1,8 @@
 # TechShare5117
 Link to [Demo](https://youtube.com/).
 ## General Flow
-First we must place all of our interactjs codeinside the UseEffect hook.\n
-Then we select all the objects that we want to make interactable so we select pass in the CSS class selector ".dragImg" (show html??) and then add the interaction we want.\n In this case we want to make our elements draggable\n
+First we must place all of our interactjs codeinside the UseEffect hook.\
+Then we select all the objects that we want to make interactable so we select pass in the CSS class selector ".dragImg" (show html??) and then add the interaction we want.\ In this case we want to make our elements draggable\
 ```javascript
 interact('.dragImg')
         .draggable({
