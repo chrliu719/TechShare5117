@@ -31,7 +31,7 @@ interact('.dragImg')
 Now we need to actually make our objects move when dragged.\
 The part of interact thats both a blessing and a curse is that you have to define your own event handlers to move the object.\
 ### Draggable Listener
-There are different listeners available such as onEnd.
+There are other listeners available such as onEnd.
 However, In this case, we need to write a function to handle the move event when the object is being moved, and we do this with the function dragMoveListener.\
 The event object passed into this function gives us information about the elements involved in the drag event.<br />
 ```javascript
